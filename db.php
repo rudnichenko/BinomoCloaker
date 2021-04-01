@@ -83,6 +83,8 @@ function add_lead($subid,$name,$phone,$status='Lead') {
 	$land = get_cookie('landing');
 	$preland = get_cookie('prelanding');
 	if (empty($preland)) $preland='unknown';
+	
+	parse_str($_SERVER['QUERY_STRING'],$queryarr);
 
 	$lead=[
 		"subid"=>$subid,
@@ -93,7 +95,8 @@ function add_lead($subid,$name,$phone,$status='Lead') {
 		"fbp"=>$fbp,
 		"fbclid"=>$fbclid,
 		"preland"=>$preland,
-		"land" => $land
+		"land"=>$land,
+		"subs"=>$queryarr
     ];
 	$leadsStore->insert($lead);
 }
